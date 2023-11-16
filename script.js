@@ -12,6 +12,10 @@ const frontCard = document.querySelector(".front");
 const backCard = document.querySelector(".back");
 const VISAimg = document.querySelector(".VISA");
 
+const error = document.createElement("div");
+error.className = "error-message";
+error.style.color = "red";
+
 inputNumber.addEventListener("input", () => {
   const inputDigits = inputNumber.value.split("");
   cardNumber.innerText = "";
@@ -29,19 +33,34 @@ inputNumber.addEventListener("input", () => {
     if (!isNaN(digit)) {
       cardNumber.innerText += digit;
     } else {
-      const error = document.createElement("div");
       error.textContent = "Please use only digits";
-      error.className = "error-message";
       inputNumber.insertAdjacentElement("afterend", error);
-      error.style.color = "red";
       inputNumber.style.borderColor = "red";
+      inputNumber.style.backgroundColor = "#FFCCCB";
     }
   });
 });
 
 inputHolder.addEventListener("input", () => {
-  const inputNames = inputHolder.value.split(" ");
-  cardHolder.innerText = inputNames.join(" ");
+  const inputNames = inputHolder.value;
+  let containsNonLetter = false;
+
+  const existingError = inputHolder.querySelector(".error-message");
+  if (existingError) {
+    existingError.remove();
+  }
+
+  if (!/^[a-zA-Z\s]+$/.test(inputNames)) {
+    containsNonLetter = true;
+  }
+
+  if (containsNonLetter) {
+    error.textContent = "Please use only letters and spaces";
+    inputHolder.insertAdjacentElement("afterend", error);
+    inputHolder.style.backgroundColor = "#FFCCCB";
+  } else {
+    cardHolder.innerText = inputNames;
+  }
 });
 
 inputExpMonth.addEventListener("input", () => {
