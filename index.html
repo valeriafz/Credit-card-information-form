@@ -7,6 +7,57 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="container">
+      <form action="">
+        <div class="input">
+          <label for="card-number">Card Number</label>
+          <input
+            type="text"
+            id="card-number"
+            placeholder="1234 5678 9012 3456"
+          />
+        </div>
+        <div class="input">
+          <label for="card-holder">Card Holder</label>
+          <input type="text" id="card-holder" placeholder="Name Surname" />
+        </div>
+        <div class="flexbox">
+          <div class="input">
+            <label for="expire-month">Expiration Month</label>
+            <select name="" id="expire-month" placeholder="MM">
+              <option value="" disabled selected hidden></option>
+              <option value="01">01 - January</option>
+              <option value="02">02 - February</option>
+              <option value="03">03 - March</option>
+              <option value="04">04 - April</option>
+              <option value="05">05 - May</option>
+              <option value="06">06 - June</option>
+              <option value="07">07 - July</option>
+              <option value="08">08 - August</option>
+              <option value="09">09 - September</option>
+              <option value="10">10 - October</option>
+              <option value="11">11 - November</option>
+              <option value="12">12 - December</option>
+            </select>
+          </div>
+          <div class="input">
+            <select name="" id="expire-year" placeholder="YY">
+              <option value="" disabled selected hidden></option>
+              <option value="23">2023</option>
+              <option value="24">2024</option>
+              <option value="25">2025</option>
+              <option value="26">2026</option>
+              <option value="27">2027</option>
+            </select>
+          </div>
+          <div class="input">
+            <label for="cvc">CVC/CVV</label>
+            <input type="text" id="cvc" placeholder="***" />
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
