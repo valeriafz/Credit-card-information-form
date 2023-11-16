@@ -80,6 +80,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transform: perspective(1000px) rotateY(0deg);
   transition: transform 0.4s ease-out;
 }
 
@@ -140,10 +141,42 @@
   background: linear-gradient(45deg, blue, darkblue, deeppink);
   border-radius: 15px;
   backface-visibility: hidden;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
   padding: 20px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transform: transition 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  transform: perspective(1000px) rotateY(180deg);
+}
+
+.container .card .back .line {
+  background-color: black;
+  width: 100%;
+  margin: 10px 0;
+  height: 40px;
+}
+
+.container .card .back .box {
+  padding: 0 20px;
+}
+
+.container .card .back .box span {
+  color: #ccc;
+  font-size: 15px;
+}
+
+.container .card .back .box .CVV-container {
+  height: 40px;
+  padding: 10px;
+  margin-top: 15px;
+  color: aliceblue;
+  background: linear-gradient(45deg, grey, darkgrey);
+  border-radius: 5px;
+  width: 100%;
+}
+
+.container .card .back .box img {
+  margin-top: 20px;
+  height: 20px;
 }
