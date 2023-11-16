@@ -59,7 +59,7 @@ inputHolder.addEventListener("input", () => {
     inputHolder.insertAdjacentElement("afterend", error);
     inputHolder.style.backgroundColor = "#FFCCCB";
   } else {
-    cardHolder.innerText = inputNames;
+    cardHolder.innerText = inputNames.toUpperCase();
   }
 });
 
