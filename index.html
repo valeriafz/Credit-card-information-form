@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Credit Card Information</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Eczar&family=Neucha&family=Onest:wght@200&family=Playfair+Display:wght@500&family=Roboto+Mono:wght@300&family=Young+Serif&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
@@ -23,9 +29,9 @@
         </div>
         <div class="flexbox">
           <div class="input-container">
-            <label for="expire-month">Expiration Date</label>
-            <select name="" id="expire-month" placeholder="MM">
-              <option value="" disabled selected hidden></option>
+            <label for="expire-month">Expiration</label>
+            <select name="Month" id="expire-month">
+              <option value="" disabled selected hidden>Month</option>
               <option value="01">01 - January</option>
               <option value="02">02 - February</option>
               <option value="03">03 - March</option>
@@ -41,8 +47,8 @@
             </select>
           </div>
           <div class="input-container">
-            <select name="" id="expire-year" placeholder="YY">
-              <option value="" disabled selected hidden></option>
+            <select name="Year" id="expire-year">
+              <option value="" disabled selected hidden>Year</option>
               <option value="23">2023</option>
               <option value="24">2024</option>
               <option value="25">2025</option>

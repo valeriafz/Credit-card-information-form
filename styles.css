@@ -2,13 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 600;
 }
+
 .container {
   background-color: #fbfcf8;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: column;
+  height: 100vh;
 }
 
 .container form {
@@ -22,34 +26,35 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-.container form .input-container {
-  margin-top: 10px;
-}
-
-.container form .input-container label {
+.container form label {
   display: block;
   padding-bottom: 5px;
 }
 
-.container form .input-container input,
-.container form .input-container select {
+.container form .flexbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.container form .input-container select,
+.container form .input-container input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.container form .flexbox {
-  display: flex;
-  gap: 10px;
-}
-
-.container form .flexbox .input-container {
-  flex: 1 1 150px;
-}
-
 .container form button {
+  color: white;
   width: 100%;
   padding: 10px;
   border-radius: 5px;
+  background: linear-gradient(45deg, blue, darkblue);
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
 }
+
+/* Additional styles can be added based on your design requirements */
