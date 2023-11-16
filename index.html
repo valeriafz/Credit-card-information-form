@@ -5,8 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Credit Card Information</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Eczar&family=Neucha&family=Onest:wght@200&family=Playfair+Display:wght@500&family=Roboto+Mono:wght@300&family=Young+Serif&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <div class="visa-cad">
+            <img src="./imgs/pngwing.com (3).png" class="chip" alt="" />
+            <img src="./imgs/pngwing.com (2).png" class="VISA" alt="" />
+          </div>
+          <div class="card-number">#### #### #### ####</div>
+          <div class="flexbox">
+            <div class="box">
+              <span>Card Holder</span>
+              <div class="card-holder">Name Surname</div>
+            </div>
+            <div class="box">
+              <span>Expires</span>
+              <div class="expires">
+                <span class="expires-m">MM /</span>
+                <span class="expires-y">YY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="back">
+          <div class="line"></div>
+          <div class="box">
+            <span>CVV</span>
+            <div class="CVV-container"></div>
+            <img src="./imgs/pngwing.com (2).png" alt="visa png" />
+          </div>
+        </div>
+      </div>
+      <form action="">
+        <div class="input-container">
+          <label for="card-number">Card Number</label>
+          <input
+            type="text"
+            id="card-number"
+            placeholder="1234 5678 9012 3456"
+          />
+        </div>
+        <div class="input-container">
+          <label for="card-holder">Card Holder</label>
+          <input type="text" id="card-holder" placeholder="Name Surname" />
+        </div>
+        <div class="flexbox">
+          <div class="input-container">
+            <label for="expire-month">Expiration</label>
+            <select name="Month" id="expire-month">
+              <option value="" disabled selected hidden>Month</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+          <div class="input-container">
+            <select name="Year" id="expire-year">
+              <option value="" disabled selected hidden>Year</option>
+              <option value="23">2023</option>
+              <option value="24">2024</option>
+              <option value="25">2025</option>
+              <option value="26">2026</option>
+              <option value="27">2027</option>
+            </select>
+          </div>
+          <div class="input-container">
+            <label for="cvc">CVC/CVV</label>
+            <input type="text" id="cvc" placeholder="***" />
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

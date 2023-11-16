@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 600;
+}
+
+.container {
+  background-color: #fbfcf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  height: 100vh;
+}
+
+.container form {
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding-top: 130px;
+}
+
+.container form label {
+  display: block;
+  padding-bottom: 5px;
+}
+
+.container form .flexbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.container form .input-container select,
+.container form .input-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.container form button {
+  color: white;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background: linear-gradient(45deg, blue, darkblue);
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+}
+
+.container .card {
+  margin-bottom: -100px;
+  position: relative;
+  height: 200px;
+  width: 350px;
+}
+
+.container .card .front {
+  color: #ccc;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, blue, darkblue, deeppink);
+  border-radius: 15px;
+  backface-visibility: hidden;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: perspective(1000px) rotateY(0deg);
+  transition: transform 0.4s ease-out;
+}
+
+.container .card .front .branding {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .card .front .branding .VISA img,
+.container .card .front .branding .chip img {
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+.container .card .front .branding .VISA img,
+.container .card .front .branding .chip img {
+  width: auto;
+  height: 100%;
+}
+
+.container .card .front .branding .VISA {
+  align-items: flex-start;
+  justify-content: flex-end;
+  float: right;
+}
+
+.container .card .front .branding .chip {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.container .card .front .card-number {
+  padding: 20px 0;
+  color: #ccc;
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+.container .card .front .flexbox {
+  display: flex;
+}
+
+.container .card .front .flexbox .box:nth-child(1) {
+  margin-right: auto;
+}
+
+.container .card .front .flexbox .box {
+  font-size: 15px;
+}
+
+.container .card .back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, blue, darkblue, deeppink);
+  border-radius: 15px;
+  backface-visibility: hidden;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.4s ease-out;
+  transform: perspective(1000px) rotateY(180deg);
+}
+
+.container .card .back .line {
+  background-color: black;
+  width: 100%;
+  margin: 10px 0;
+  height: 40px;
+}
+
+.container .card .back .box {
+  padding: 0 20px;
+}
+
+.container .card .back .box span {
+  color: #ccc;
+  font-size: 15px;
+}
+
+.container .card .back .box .CVV-container {
+  height: 40px;
+  padding: 10px;
+  margin-top: 15px;
+  color: aliceblue;
+  background: linear-gradient(45deg, grey, darkgrey);
+  border-radius: 5px;
+  width: 100%;
+}
+
+.container .card .back .box img {
+  margin-top: 20px;
+  height: 20px;
+}
