@@ -35,8 +35,12 @@
 .container form .flexbox {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 10px;
+  align-items: last baseline;
+  gap: 15px;
+}
+
+.container form .flexbox > * {
+  flex: 1;
 }
 
 .container form .input-container select,
@@ -85,34 +89,27 @@
   transition: transform 0.4s ease-out;
 }
 
-.container .card .front .branding {
+.container .card .front .visa-card {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
 }
 
-.container .card .front .branding .VISA img,
-.container .card .front .branding .chip img {
+.container .card .front .visa-card img {
   display: flex;
-  align-items: center;
+  width: auto;
+}
+
+.container .card .front .visa-card .VISA {
   height: 30px;
 }
 
-.container .card .front .branding .VISA img,
-.container .card .front .branding .chip img {
-  width: auto;
-  height: 100%;
-}
-
-.container .card .front .branding .VISA {
-  align-items: flex-start;
-  justify-content: flex-end;
-  float: right;
-}
-
-.container .card .front .branding .chip {
+/* .container .card .front .visa-card .chip {
   align-items: flex-end;
   justify-content: flex-end;
-}
+  padding-top:0;
+} */
 
 .container .card .front .card-number {
   padding: 20px 0;
