@@ -13,68 +13,66 @@ const backCard = document.querySelector(".back");
 const VISAimg = document.querySelector(".VISA");
 
 const error = document.createElement("div");
-error.className = "error-message";
-error.style.color = "red";
+error.classList.add("error");
+
+const textError = (input, error, msg) => {
+  error.textContent = msg;
+  error.style.color = "red";
+  error.style.fontSize = "12px";
+  error.classList.toggle("error", true);
+  input.parentNode.append(error);
+};
 
 inputNumber.addEventListener("input", () => {
-  const inputDigits = inputNumber.value.split("");
+  error.textContent = "";
+  error.classList.toggle("error", false);
   cardNumber.innerText = "";
+  const digits = inputNumber.value.split("");
 
-  const existingError = inputNumber.querySelector(".error-message");
-  if (existingError) {
-    existingError.remove();
+  if (digits[0] === "3") {
+    VISAimg.src = "./imgs/mastercard-26161.png";
+    VISAimg.style.width = "40px";
+  } else {
+    VISAimg.src = "./imgs/pngwing.com (2).png";
   }
 
-  inputDigits.forEach((digit) => {
-    if (digit[0] === "3") {
-      VISAimg.src = "./imgs/mastercard-26161.png";
-      VISAimg.style.width = "40px";
-    }
-    if (!isNaN(digit)) {
-      cardNumber.innerText += digit;
+  digits.forEach((digit) => {
+    if (isNaN(digit)) {
+      textError(inputNumber, error, "Please only use digits");
     } else {
-      error.textContent = "Please use only digits";
-      inputNumber.insertAdjacentElement("afterend", error);
-      inputNumber.style.borderColor = "red";
-      inputNumber.style.backgroundColor = "#FFCCCB";
+      cardNumber.textContent += digit;
     }
   });
 });
 
-inputHolder.addEventListener("input", () => {
-  const inputNames = inputHolder.value;
-  let containsNonLetter = false;
-
-  const existingError = inputHolder.querySelector(".error-message");
-  if (existingError) {
-    existingError.remove();
-  }
+inputHolder.addEventListener("input", (event) => {
+  const inputNames = event.target.value;
 
   if (!/^[a-zA-Z\s]+$/.test(inputNames)) {
-    containsNonLetter = true;
-  }
-
-  if (containsNonLetter) {
-    error.textContent = "Please use only letters and spaces";
-    inputHolder.insertAdjacentElement("afterend", error);
-    inputHolder.style.backgroundColor = "#FFCCCB";
+    textError(inputHolder, error, "Please only use letters");
   } else {
     cardHolder.innerText = inputNames.toUpperCase();
   }
 });
 
-inputExpMonth.addEventListener("input", () => {
-  const selectedOption = inputExpMonth.options[inputExpMonth.selectedIndex];
-  cardExpMonth.innerText = `${selectedOption.textContent} /`;
+inputExpMonth.addEventListener("input", (event) => {
+  cardExpMonth.innerText = `${event.target.value} /`;
 });
 
-inputExpYear.addEventListener("input", () => {
-  const selectedOption = inputExpYear.options[inputExpYear.selectedIndex];
-  cardExpYear.innerText = selectedOption.textContent;
+inputExpYear.addEventListener("input", (event) => {
+  cardExpYear.innerText = event.target.value;
 });
 
-inputCVC.addEventListener("input", () => {
+inputCVC.addEventListener("input", (event) => {
+  cardCVC.innerText = event.target.value;
+});
+
+inputCVC.addEventListener("focus", () => {
   frontCard.style.transform = "perspective(1000px) rotateY(-180deg)";
   backCard.style.transform = "perspective(1000px) rotateY(0deg)";
-  cardCVC.innerText = inputCVC.value;
+});
+
+inputCVC.addEventListener("focusout", () => {
+  frontCard.style.transform = "perspective(1000px) rotateY(0deg)";
+  backCard.style.transform = "perspective(1000px) rotateY(180deg)";
 });
