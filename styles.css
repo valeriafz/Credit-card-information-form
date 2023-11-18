@@ -105,18 +105,23 @@
   height: 30px;
 }
 
-/* .container .card .front .visa-card .chip {
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding-top:0;
-} */
-
 .container .card .front .card-number {
   padding: 20px 0;
   color: #ccc;
   margin: 0 auto;
   font-size: 20px;
+  /* animation: typing 0.5s steps(20); */
 }
+
+/* .typing {
+  animation: typing 0.5s steps(40) 1;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+} */
 
 .container .card .front .flexbox {
   display: flex;

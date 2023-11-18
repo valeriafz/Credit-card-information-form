@@ -26,7 +26,9 @@ const textError = (input, error, msg) => {
 inputNumber.addEventListener("input", () => {
   error.textContent = "";
   error.classList.toggle("error", false);
-  cardNumber.innerText = "";
+
+  let cardNumberArray = Array(16).fill("#");
+
   const digits = inputNumber.value.split("");
 
   if (digits[0] === "3") {
@@ -36,11 +38,15 @@ inputNumber.addEventListener("input", () => {
     VISAimg.src = "./imgs/pngwing.com (2).png";
   }
 
-  digits.forEach((digit) => {
+  digits.forEach((digit, index) => {
     if (isNaN(digit)) {
       textError(inputNumber, error, "Please only use digits");
     } else {
-      cardNumber.textContent += digit;
+      cardNumberArray[index] = digit;
+      cardNumber.innerText = cardNumberArray
+        .join("")
+        .replace(/(....)/g, "$1 ")
+        .trimStart(); // grupeaza cate 4;
     }
   });
 });
@@ -51,20 +57,65 @@ inputHolder.addEventListener("input", (event) => {
   if (!/^[a-zA-Z\s]+$/.test(inputNames)) {
     textError(inputHolder, error, "Please only use letters");
   } else {
+    error.textContent = "";
     cardHolder.innerText = inputNames.toUpperCase();
   }
 });
 
-inputExpMonth.addEventListener("input", (event) => {
+const months = [
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "11",
+  "12",
+];
+
+const currentMonth = new Date().getMonth() + 1;
+const currentYear = new Date().getFullYear();
+
+const years = [];
+for (let i = 0; i <= 4; i++) {
+  years.push(currentYear + i);
+} // cardul expira peste 4 ani din prezent, val. maxima
+
+const updateExp = (time, current, options) => {
+  time.forEach((item) => {
+    const option = document.createElement("option");
+    option.value = item;
+    option.textContent = item;
+    option.selected = parseInt(item, 10) === current ? true : false;
+    options.appendChild(option);
+  });
+};
+
+updateExp(months, currentMonth, inputExpMonth);
+updateExp(years, currentYear, inputExpYear);
+
+inputExpMonth.addEventListener("change", (event) => {
   cardExpMonth.innerText = `${event.target.value} /`;
 });
 
-inputExpYear.addEventListener("input", (event) => {
+inputExpYear.addEventListener("change", (event) => {
   cardExpYear.innerText = event.target.value;
 });
 
 inputCVC.addEventListener("input", (event) => {
-  cardCVC.innerText = event.target.value;
+  let digits = event.target.value.split("");
+  digits.forEach((digit) => {
+    if (isNaN(digit)) {
+      textError(event.target, error, "Please only use digits");
+    } else {
+      error.textContent = "";
+      cardCVC.innerText = event.target.value;
+    }
+  });
 });
 
 inputCVC.addEventListener("focus", () => {
