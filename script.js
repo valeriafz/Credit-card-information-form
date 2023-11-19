@@ -39,14 +39,21 @@ inputNumber.addEventListener("input", () => {
   }
 
   digits.forEach((digit, index) => {
-    if (isNaN(digit)) {
+    if (/[^0-9]/.test(digit)) {
       textError(inputNumber, error, "Please only use digits");
     } else {
       cardNumberArray[index] = digit;
+
       cardNumber.innerText = cardNumberArray
         .join("")
         .replace(/(....)/g, "$1 ")
-        .trimStart(); // grupeaza cate 4;
+        .trimStart(); // Group in sets of 4;
+
+      cardNumber.classList.add("slide-up");
+
+      setTimeout(() => {
+        cardNumber.classList.remove("slide-up");
+      }, 300);
     }
   });
 });
@@ -109,7 +116,7 @@ inputExpYear.addEventListener("change", (event) => {
 inputCVC.addEventListener("input", (event) => {
   let digits = event.target.value.split("");
   digits.forEach((digit) => {
-    if (isNaN(digit)) {
+    if (/[^0-9]/.test(digit)) {
       textError(event.target, error, "Please only use digits");
     } else {
       error.textContent = "";
