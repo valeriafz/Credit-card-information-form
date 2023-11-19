@@ -113,15 +113,24 @@
   /* animation: typing 0.5s steps(20); */
 }
 
-/* .typing {
-  animation: typing 0.5s steps(40) 1;
+.card-number {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-@keyframes typing {
+.slide-up {
+  animation: slideUp 0.5s ease-in-out;
+}
+
+@keyframes slideUp {
   from {
-    width: 0;
+    transform: translateY(30%);
   }
-} */
+  to {
+    transform: translateY(0);
+  }
+}
 
 .container .card .front .flexbox {
   display: flex;
