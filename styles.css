@@ -103,32 +103,53 @@
 
 .container .card .front .visa-card .VISA {
   height: 30px;
+  width: 80px;
 }
 
 .container .card .front .card-number {
-  padding: 20px 0;
+  padding: 10px 10px;
   color: #ccc;
   margin: 0 auto;
   font-size: 20px;
-  /* animation: typing 0.5s steps(20); */
-}
-
-.card-number {
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.slide-up {
-  animation: slideUp 0.5s ease-in-out;
+.card-number-div {
+  display: inline-block;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(30%);
+.card-number-hidden {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+}
+
+.card-number-hidden.slide-up {
+  animation: slideup 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideup {
+  0% {
+    top: 0px;
   }
-  to {
-    transform: translateY(0);
+  20% {
+    top: -10px;
+  }
+  40% {
+    top: -20px;
+  }
+  60% {
+    top: 30px;
+  }
+  80% {
+    top: 15px;
+  }
+  100% {
+    top: 0px;
   }
 }
 
