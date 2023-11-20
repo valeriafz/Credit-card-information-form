@@ -11,63 +11,25 @@ const cardCVC = document.querySelector(".CVV-container");
 const frontCard = document.querySelector(".front");
 const backCard = document.querySelector(".back");
 const VISAimg = document.querySelector(".VISA");
+const cardNumberDivs = document.querySelectorAll(".card-number-div");
+const backLogo = document.querySelector(".backimg");
+
+const borders = (input, card) => {
+  input.addEventListener("focus", () => {
+    card.style.border = "2px solid #ccc";
+  });
+  input.addEventListener("focusout", () => {
+    card.style.border = "none";
+  });
+};
+
+borders(inputNumber, cardNumber);
+borders(inputHolder, cardHolder);
+borders(inputExpMonth, cardExpMonth);
+borders(inputExpYear, cardExpYear);
 
 const error = document.createElement("div");
 error.classList.add("error");
-
-const textError = (input, error, msg) => {
-  error.textContent = msg;
-  error.style.color = "red";
-  error.style.fontSize = "12px";
-  error.classList.toggle("error", true);
-  input.parentNode.append(error);
-};
-
-inputNumber.addEventListener("input", () => {
-  error.textContent = "";
-  error.classList.toggle("error", false);
-
-  let cardNumberArray = Array(16).fill("#");
-
-  const digits = inputNumber.value.split("");
-
-  if (digits[0] === "3") {
-    VISAimg.src = "./imgs/mastercard-26161.png";
-    VISAimg.style.width = "40px";
-  } else {
-    VISAimg.src = "./imgs/pngwing.com (2).png";
-  }
-
-  digits.forEach((digit, index) => {
-    if (/[^0-9]/.test(digit)) {
-      textError(inputNumber, error, "Please only use digits");
-    } else {
-      cardNumberArray[index] = digit;
-
-      cardNumber.innerText = cardNumberArray
-        .join("")
-        .replace(/(....)/g, "$1 ")
-        .trimStart(); // Group in sets of 4;
-
-      cardNumber.classList.add("slide-up");
-
-      setTimeout(() => {
-        cardNumber.classList.remove("slide-up");
-      }, 300);
-    }
-  });
-});
-
-inputHolder.addEventListener("input", (event) => {
-  const inputNames = event.target.value;
-
-  if (!/^[a-zA-Z\s]+$/.test(inputNames)) {
-    textError(inputHolder, error, "Please only use letters");
-  } else {
-    error.textContent = "";
-    cardHolder.innerText = inputNames.toUpperCase();
-  }
-});
 
 const months = [
   "01",
@@ -92,13 +54,78 @@ for (let i = 0; i <= 4; i++) {
   years.push(currentYear + i);
 } // cardul expira peste 4 ani din prezent, val. maxima
 
+const textError = (input, error, msg) => {
+  error.textContent = msg;
+  error.style.color = "red";
+  error.style.fontSize = "12px";
+  error.classList.toggle("error", true);
+  input.value = input.value.slice(0, -1);
+  input.parentNode.append(error);
+};
+
+inputNumber.addEventListener("input", () => {
+  error.textContent = "";
+  error.classList.toggle("error", false);
+
+  const digits = inputNumber.value.split("");
+
+  if (digits[0] === "3") {
+    VISAimg.src = "./imgs/mastercard-26161.png";
+    VISAimg.style.width = "40px";
+    backLogo.src = "./imgs/mastercard-26161.png";
+    backLogo.style.width = "30px";
+    backLogo.style.height = "30px";
+  } else {
+    VISAimg.src = "./imgs/pngwing.com (2).png";
+    VISAimg.style.width = "80px";
+  }
+
+  cardNumberDivs.forEach((item) => {
+    const cardNumberHiddens = item.querySelectorAll(".card-number-hidden");
+    cardNumberHiddens.forEach((digit) => {
+      digit.textContent = "#";
+    });
+  });
+
+  digits.forEach((digit, index) => {
+    if (/[^0-9]/.test(digit)) {
+      textError(inputNumber, error, "Please only use digits");
+    } else {
+      const cardNumberHidden = cardNumberDivs[
+        Math.floor(index / 4)
+      ].querySelectorAll(".card-number-hidden")[index % 4]; // groups them by 4 by index
+
+      cardNumberHidden.textContent = "#";
+
+      if (index === digits.length - 1) {
+        cardNumberHidden.classList.add("slide-up");
+        setTimeout(() => {
+          cardNumberHidden.textContent = digit;
+          cardNumberHidden.classList.remove("slide-up");
+        }, 300);
+      } else {
+        cardNumberHidden.textContent = digit;
+      }
+    }
+  });
+});
+
+inputHolder.addEventListener("input", (event) => {
+  if (!/^[a-zA-Z\s]+$/.test(event.target.value)) {
+    textError(inputHolder, error, "Please only use letters");
+  } else {
+    error.textContent = "";
+    cardHolder.innerText = event.target.value.toUpperCase();
+  }
+});
+
 const updateExp = (time, current, options) => {
   time.forEach((item) => {
     const option = document.createElement("option");
     option.value = item;
     option.textContent = item;
-    option.selected = parseInt(item, 10) === current ? true : false;
-    options.appendChild(option);
+    option.selected = parseInt(item, 10) === current;
+    options.append(option);
   });
 };
 
